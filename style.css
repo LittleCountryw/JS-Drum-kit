@@ -1,0 +1,70 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  font-size: 10px;
+  background:url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+  background-size: cover;
+  font-family: sans-serif;
+}
+
+.keys{
+  display: flex;
+  /* 我认为此处用不用flex1都可以，
+  因为父元素没有给宽度，所以父元素的宽度是子元素撑起来的，所以没有剩余空间再供子元素分配 */
+  flex:1;
+  /* 用align-items使元素垂直居中时，必须设置父元素高度 */
+  /* CSS 属性 min-height 能够设置元素的最小高度。
+  这样能够防止 height 属性的应用值小于 min-height 的值。
+  当 min-height 大于 max-height 或 height 时，元素的高度会设置为 min-height 的值。
+  对于本次样式，如果设置height为100vh，由于样式为水平垂直居中，所以元素会始终处于居中的状态。
+  如果设置min-height为100vh，当浏览器窗口缩小，min-height<height时，元素就为height的值，
+  在本例中height就等于kbd高度和sound高度相加，这时，相当于align-items失效，元素水平居中垂直贴在浏览器页面顶部
+  当浏览器页面进一步变小时，keys下面的部分会遮盖住。
+  */
+  /* 使用vh而不使用px的原因：使用100vh页面高度会根据浏览器页面高度动态的进行改变
+    可以保证页面中的flex布局不管浏览器页面大小如何变化，一直保持原布局
+  */
+  /* height: 100vh; */
+  min-height:100vh;
+  align-items: center;
+  justify-content: center;
+} 
+
+.key{
+  width: 100px;
+  border: 4px solid black;
+  border-radius:5px;
+  padding:1rem .5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  margin:1rem;
+  color:white;
+  background:rgba(0,0,0,0.4);
+  text-shadow:0 0 5px black;
+  transition:all .07s;
+}
+
+.playing{
+  transform: scale(1.1);
+  border-color:#ffc600;
+  box-shadow: 0 0 10px #ffc600;
+}
+
+kbd {
+  display: block;
+  font-size: 40px;
+}
+
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  /* 设置文字之间的间隙 
+  不过会在最后多一个letter-spacing会破坏居中，要想让其完全居中，可以设置padding-left：letter-spacing的大小
+  如果是按钮中的文字，要设置text-indent = letter-spacing的大小
+  */
+  letter-spacing: 1px;
+  color:#ffc600;
+}
